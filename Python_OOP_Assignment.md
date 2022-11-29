@@ -125,19 +125,68 @@ A)Operator Overloading means giving extended meaning beyond their predefined ope
 ---
 
 ### Q15. When do you consider allowing operator overloading of your classes?
-A) 
+A) It allows for reusability; instead of developing numerous methods with minor differences, we can simply write one method and overload it. It also increases code clarity and reduces complexity.
 
 --- 
 
-Q16. What is the most popular form of operator overloading?
+### Q16. What is the most popular form of operator overloading?
+A) A very popular and convenient form of operator overloading is the Addition (+) operator. the ‘+’ operator operates on two numbers and the same operator operates on two strings. It performs “Addition” on numbers whereas it performs “Concatenation” on strings.
 
-Q17. What are the two most important concepts to grasp in order to comprehend Python OOP code?
+---
 
-Q18. Describe three applications for exception processing.
+### Q17. What are the two most important concepts to grasp in order to comprehend Python OOP code?
+A)**Inheritance** and **polymorphism** are key ingredients for designing robust, flexible, and easy-to-maintain software.
 
-Q19. What happens if you don't do something extra to treat an exception?
+---
 
-Q20. What are your options for recovering from an exception in your script?
+### Q18. Describe three applications for exception processing.
+A) In Python, exceptions can be handled using a **try statement**.
+The critical operation which can raise an exception is placed inside the try clause. The code that handles the exceptions is written in the except clause. The main aim of the exception handling is to prevent potential failures and uncontrolled stops.
+
+```
+<!-- try block -->
+try:
+    print(2/0)
+except:
+    print("code done")
+
+output : code done
+
+
+<!-- Handling specific exception -->
+try:
+    print(2/0)
+except ZeroDivisionError:
+    print("ZeroDivisionError")
+
+output : ZeroDivisionError
+
+<!-- try finally exception -->
+<!-- regardless of an exception occurs or not finally blocks gets executed -->
+
+try:
+    print(2/0)
+except ZeroDivisionError:
+    print("ZeroDivisionError")
+finally:
+    print("finally always prited")
+
+```
+
+---
+
+### Q19. What happens if you don't do something extra to treat an exception?
+A)  An exception object is created when a Python script raises an exception. If the script explicitly doesn't handle the exception, the program will be forced to terminate abruptly.
+
+--- 
+
+### Q20. What are your options for recovering from an exception in your script?
+A) Use  try...except statement to handle exceptions gracefully.
+   Use specific exceptions in the except block as much as possible.
+   Use the except Exception statement to catch other exceptions.
+
+---
+
 
 Q21. Describe two methods for triggering exceptions in your script.
 
