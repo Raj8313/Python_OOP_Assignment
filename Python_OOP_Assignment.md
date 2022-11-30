@@ -188,34 +188,221 @@ A) Use  try...except statement to handle exceptions gracefully.
 ---
 
 
-Q21. Describe two methods for triggering exceptions in your script.
+### Q21. Describe two methods for triggering exceptions in your script.
+A)For example, a Python program has a function X that calls function Y, which in turn calls function Z. If an exception exists in function Z but is not handled within Z, the exception passes to Y and then to X. Simply, it will have a domino effect. 
 
-Q22. Identify two methods for specifying actions to be executed at termination time, regardless of  
-whether or not an exception exists.
+An unhandled exception displays an error message and the program suddenly crashes. To avoid such a scenario, there are two methods to handle Python exceptions:
 
-Q23. What is the purpose of the try statement?
+Try – This method catches the exceptions raised by the program.
+Raise – Triggers an exception manually using custom exceptions.
 
-Q24. What are the two most popular try statement variations?
+---
 
-Q25. What is the purpose of the raise statement?
+### Q22. Identify two methods for specifying actions to be executed at termination time, regardless of  whether or not an exception exists.
+A) try catch finally are the methods, that are executed at termination time.  
 
-Q26. What does the assert statement do, and what other statement is it like?
+---
 
-Q27. What is the purpose of the with/as argument, and what other statement is it like?
+### Q23. What is the purpose of the try statement?
+A) The try block lets you test a block of code for errors.
 
-Q28. What are *args, **kwargs?
+---
 
-Q29. How can I pass optional or keyword parameters from one function to another?
+### Q24. What are the two most popular try statement variations?
+A) 
 
-Q30. What are Lambda Functions?
+```
+<!-- variation one -->
+try:
+   print(x)
+except Exception:
+   print("Something broke!")
 
-Q31. Explain Inheritance in Python with an example?
 
-Q32. Suppose class C inherits from classes A and B as class C(A,B).Classes A and B both have their own versions of method func(). If we call func() from an object of 
-class C, which version gets invoked?
+<!-- variation two -->
+try:
+   print(int(x))
+except NameError:
+  print("The variable is undefined")   
+except Exception as e:
+   print(e)
 
-Q33. Which methods/functions do we use to determine the type of instance and inheritance?
+```
 
-Q34.Explain the use of the 'nonlocal' keyword in Python.
+--- 
 
-Q35. What is the global keyword?
+### Q25. What is the purpose of the raise statement?
+A) Python raise Keyword is used to raise exceptions or errors. The raise keyword raises an error and stops the control flow of the program. It is used to bring up the current exception in an exception handler so that it can be handled further up the call stack.
+
+---
+
+
+### Q26. What does the assert statement do, and what other statement is it like?
+A) Assertions are simply boolean expressions that check if the conditions return true or not. If it is true, the program does nothing and moves to the next line of code. However, if it's false, the program stops and throws an error.
+
+It is also a debugging tool as it halts the program as soon as an error occurs and displays it.
+
+---
+
+### Q27. What is the purpose of the with/as argument, and what other statement is it like?
+A) The with statement is a replacement for commonly used **try/finally** error-handling statements. A common example of using the with statement is opening a file. To open and write to a file in Python, you can use the with statement as follows:
+
+```
+with open("example.txt", "w") as file:
+    file.write("Hello World!")
+
+```
+The with statement automatically closes the file after you’ve completed writing it.
+
+---
+
+### Q28. What are *args, **kwargs?
+A) We use *args and **kwargs as an argument when we are not sure about the number of arguments to pass in the functions.
+
+---
+
+### Q29. How can I pass optional or keyword parameters from one function to another?
+A) To pass optional or keyword parameters from one function to another, collect the arguments using the * and ** specifiers in the function’s parameter list.
+
+**kwargs = keyword parameters
+
+```
+def demo(**car):
+   print("Car Name: "+car["name"])
+   print("Car Model: "+car["model"])
+
+
+demo(name = "TATA", model = "2022")
+
+output : Car Name: TATA
+         Car Model: 2022
+
+```
+collect the arguments using the * and ** in the function’s parameter list. you will get the **positional arguments as a tuple** and the **keyword arguments as a dictionary**.
+
+In the below example 'x' and 'text' are optional parameters.
+
+```
+def func(x=3, text="Hello"):
+    print(x)
+    if text == "Hello":
+        print("Text = Hello")
+    else:
+        print("Text is not Hello")
+
+func()
+
+output : 3
+        Text = Hello
+
+```
+
+---
+
+### Q30. What are Lambda Functions?
+A) A lambda function is a small anonymous function. Python Lambda Functions are anonymous function means that the function is without a name. 
+syntax : lambda arguments : expression
+
+```
+x = lambda a, b : a * b
+print(x(5, 6))
+
+output : 30
+
+```
+---
+
+### Q31. Explain Inheritance in Python with an example?
+A) Inheritance allows us to define a class that inherits all the methods and properties from another class.
+**Parent class** is the class being inherited from, also called base class.
+**Child class** is the class that inherits from another class, also called derived class.
+
+In the below example **camera** is a parent class / super class and **voice_assitance** is a child class / sub class. voice_assiatance can inherit all the features of parent class. This is single level inheritance.
+
+```
+class camera: #parent class/super class
+    def cam_1(self):
+        print("your mobile has Cam_1 is 8MP")
+
+    def cam_2(self):
+        print("your mobile has Cam_2 is 16MP")
+
+
+class voice_assistance(camera): #child class/sub class
+    def hey_google(self):
+        print("your mobile's voice assitance is 'Hey Google'")
+
+    def alexa(self):
+        print("your mobile's voice assistance is 'Alexa'")
+
+
+
+mobile = voice_assistance()
+mobile.alexa()
+mobile.hey_google()
+mobile.cam_1()
+mobile.cam_2()
+
+output : your mobile's voice assistance is 'Alexa'
+         your mobile's voice assitance is 'Hey Google'
+         your mobile has Cam_1 is 8MP
+         your mobile has Cam_2 is 16MP
+
+```
+---
+
+### Q32. Suppose class C inherits from classes A and B as class C(A,B).Classes A and B both have their own versions of method func(). If we call func() from an object of class C, which version gets invoked?
+A) class "A" gets invoked.
+
+```
+class ParentA:
+    def show(self):
+        print("Inside Parent A")
+
+class ParentB:
+    def show(self):
+        print("Inside Parent B")
+
+class C(ParentB,ParentA):
+    def display(self):
+        print("display c")
+
+objC = C()
+objC.show()
+
+output : Inside Parent A
+
+```
+---
+
+### Q33. Which methods/functions do we use to determine the type of instance and inheritance?
+A) Use **isinstance()** to check an instance’s type: isinstance(obj, int) will be True only if obj.__class__ is int or some class derived from int.
+Use **issubclass()** to check class inheritance: issubclass(bool, int) is True since bool is a subclass of int. However, issubclass(float, int) is False since float is not a subclass of int.
+
+---
+
+### Q34.Explain the use of the 'nonlocal' keyword in Python.
+A) The nonlocal keyword is used to **work with variables inside nested functions, where the variable should not belong to the inner function**. Use the keyword nonlocal to declare that the variable is not local.
+
+---
+
+### Q35. What is the global keyword?
+A) In Python, the global keyword allows us to modify the variable outside of the current scope. It is used to create a global variable and make changes to the variable in a local context.
+
+```
+c = 1
+
+def add(a):
+    # global keyword
+    global c
+
+    c = c + a
+    print("c value is:",c," ", "a value is: ", a)
+
+add(2)
+
+output : c value is: 3   a value is:  2
+
+```
+
+---
